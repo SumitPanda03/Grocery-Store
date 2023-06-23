@@ -1,0 +1,323 @@
+/*Layout.html*/
+
+.other-html {
+  background-color: rgba(255, 254, 248, 0.33);
+}
+.image-color {
+  background-color: rgba(255, 254, 248, 0.33);
+}
+.logo {
+  margin-left: 10px;
+  margin-right: 10px;
+  /*margin-right: 100px;*/
+  padding: 30px;
+}
+.logo img {
+  /*border-radius: 2%;*/
+  width: 1800px;
+  height: 400px;
+  box-shadow: #7a21f6;
+}
+.nav-section {
+  text-align: center;
+  background-color: rgb(134, 152, 155,0.6);
+  padding: 10px;
+}
+
+.nav-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nav-section th {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.nav-section th a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-section th a:hover {
+  color: #666;
+}
+
+main table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+main th {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+main td {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/*about.html*/
+
+/* Reset default margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set background color for the whole page */
+body {
+  background-color: #f8f8f8;
+}
+
+/* Header styles */
+header {
+  font-family: "Comic Sans MS", serif;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-family: "Arial Rounded MT Bold", serif ;
+  text-decoration: underline;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Main content styles */
+main {
+  font-family: "Comic Sans MS", serif;
+  padding: 20px;
+}
+
+main h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+main ul {
+  list-style-type: disc;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+main ul li {
+  font-family: "Comic Sans MS", serif;
+  margin-bottom: 10px;
+}
+
+/* Footer styles */
+footer {
+  font-family: "Comic Sans MS", serif;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+footer table {
+  width: 100%;
+}
+
+footer th {
+  padding: 5px;
+  font-size: 14px;
+}
+
+footer th a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/*add.html*/
+
+.adding-item {
+  text-align: center;
+  margin: 20px;
+}
+
+.adding-item h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.adding-item form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adding-item input[type="number"],
+.adding-item input[type="text"] {
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.adding-item button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.adding-item button:hover {
+  background-color: #666;
+}
+
+
+/*update.html*/
+
+.updating-item {
+  text-align: center;
+  margin: 20px;
+}
+
+.updating-item h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.updating-item form {
+  /*display: flex;*/
+  flex-direction: column;
+  align-items: center;
+}
+
+.updating-item label {
+  font-size: 16px;
+}
+
+.updating-item input[type="text"] {
+  width: 250px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.updating-item button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.updating-item button:hover {
+  background-color: #666;
+}
+
+
+/*delete.html*/
+
+.delete-item-id {
+  text-align: center;
+  margin: 20px;
+}
+
+.delete-item-id h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.delete-item-id form {
+  /*display: flex;*/
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-item-id label {
+  font-size: 16px;
+}
+
+.delete-item-id input[type="number"] {
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.delete-item-id input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.delete-item-id input[type="submit"]:hover {
+  background-color: #666;
+}
+
+/*catalogue.html*/
+
+.catalogue {
+  text-align: center;
+  margin: 20px;
+}
+
+.catalogue h2#items {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.catalogue .item-list {
+  margin-top: 20px;
+}
+
+.catalogue table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.catalogue th,
+.catalogue td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.catalogue th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.catalogue tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.catalogue tbody tr:hover {
+  background-color: #ebebeb;
+}
+
+.catalogue td {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.catalogue td {
+  display: table-cell;
+  vertical-align: middle;
+}
+

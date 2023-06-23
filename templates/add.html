@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block add %}
+
+    <div class="adding-item">
+        <h2>ADD Item</h2>
+        <form action="{{url_for('add')}}" method = "POST" role="form">
+            <input name="new-item-id" type="text" placeholder="Enter ID of new item" aria-label="Store" aria-describedby="add-btn" pattern="[A-Za-z0-9]+" minlength="2" maxlength="4" >
+            <input name="new-item-name" type="text" placeholder="Enter Name of new item" aria-label="Store" aria-describedby="add-btn" >
+            <input name="new-item-price" type="number" placeholder="Enter Price of new item" aria-label="Store" aria-describedby="add-btn" >
+
+            <button type="submit" id="add-btn">ADD</button>
+        </form>
+    </div>
+
+{% endblock %}

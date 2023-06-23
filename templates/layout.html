@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MY-STORE</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+
+    <nav class="nav-section">
+        <table>
+            <thead>
+                <tr>
+                    <th><u><a href="{{url_for('index')}}"> HOME</a> </u></th>
+                    <th><u><a href="{{url_for('about')}}">ABOUT</a></u></th>
+                    <th><u><a href="{{url_for('catalogue')}}">CATALOGUE</a></u></th>
+                    <th><u><a href="{{url_for('add')}}"> ADD</a> </u></th>
+                    <th><u><a href="{{url_for('update_item')}}"> UPDATE</a></u></th>
+                    <th><u><a href="{{url_for('delete_itemid')}}"> DELETE</a> </u></th>
+                    <th><u><a href="{{url_for('reset')}}"> RESET</a> </u></th>
+<!--                    <th><u><a href="#cart"> CART</a> </u></th>-->
+<!--                    <th><u><a href="#checkout"> CHECKOUT</a> </u></th>-->
+
+                </tr>
+            </thead>
+        </table>
+    </nav>
+
+    <div class="image-color">
+        <div class="logo">
+            <img src="/static/SiteLogo.png" alt="Site Logo">
+        </div>
+        <hr>
+    </div>
+
+<section class="other-html">
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="catalogue">
+        {% block catalogue %}{% endblock %}
+    </div>
+
+    <div class="update">
+        {% block update %}{% endblock %}
+    </div>
+
+    <div class="add">
+        {% block add %}{% endblock %}
+    </div>
+
+    <div class="delete">
+        {% block delete %}{% endblock %}
+    </div>
+</section>
+
+</body>
+</html>

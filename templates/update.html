@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block update %}
+
+    <div class="updating-item">
+        <h1>Update Item</h1>
+        <form action="{{ url_for('update_item') }}" method="POST" role="form">
+<!--            <input type="hidden" name="_method" value="PUT">-->
+            <label for="item_id">Item ID:</label>
+            <input type="text" name="item_id" id="item_id" placeholder="Enter ID of new item" aria-label="Store" aria-describedby="update-btn" required pattern="[A-Za-z0-9]+}">
+            <br><br>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter Name of new item" aria-label="Store" aria-describedby="update-btn" required>
+            <br><br>
+
+            <label for="price">Price:</label>
+            <input type="text" name="price" id="price" placeholder="Enter Price of new item" aria-label="Store" aria-describedby="update-btn" required>
+            <br><br>
+
+    <!--        <input type="submit" value="Update">-->
+            <button type="Submit" id="update-btn"> UPDATE</button>
+        </form>
+    </div>
+
+
+{% endblock %}

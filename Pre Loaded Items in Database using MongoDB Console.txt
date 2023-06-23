@@ -1,0 +1,79 @@
+use Store
+
+db.items.insertMany([
+    {
+        "_id": "R1KG",
+        "name": "Rice",
+        "price": 60
+    },
+    {
+        "_id": "F2KG",
+        "name": "Flour",
+        "price": 40
+    },
+    {
+        "_id": "S3KG",
+        "name": "Sugar",
+        "price": 45
+    },
+    {
+        "_id": "T4PK",
+        "name": "Tea",
+        "price": 80
+    },
+    {
+        "_id": "C5GM",
+        "name": "Cumin Seeds",
+        "price": 120
+    },
+    {
+        "_id": "T6PK",
+        "name": "Turmeric Powder",
+        "price": 55
+    },
+    {
+        "_id": "M7LT",
+        "name": "Mustard Oil",
+        "price": 150
+    },
+    {
+        "_id": "B8KG",
+        "name": "Bengal Gram Split",
+        "price": 90
+    },
+    {
+        "_id": "C9GM",
+        "name": "Cardamom",
+        "price": 300
+    },
+    {
+        "_id": "C1LT",
+        "name": "Cooking Oil",
+        "price": 120
+    },
+    {
+        "_id": "S2KG",
+        "name": "Salt",
+        "price": 20
+    },
+    {
+        "_id": "C3GM",
+        "name": "Coriander Powder",
+        "price": 40
+    },
+    {
+        "_id": "T4KG",
+        "name": "Tomato",
+        "price": 25
+    },
+    {
+        "_id": "P5KG",
+        "name": "Potato",
+        "price": 30
+    },
+    {
+        "_id": "O6KG",
+        "name": "Onion",
+        "price": 35
+    }
+])
