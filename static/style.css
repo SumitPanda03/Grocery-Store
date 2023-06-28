@@ -304,7 +304,7 @@ footer th a {
 }
 
 .catalogue tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: rgba(116, 147, 150, 0.25);
 }
 
 .catalogue tbody tr:hover {
@@ -316,8 +316,166 @@ footer th a {
   vertical-align: middle;
 }
 
-.catalogue td {
+
+/*buy.html*/
+
+.buy {
+  text-align: center;
+  margin: 20px;
+}
+
+.buy h2#items {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.buy .item-list {
+  margin-top: 20px;
+}
+
+.buy table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.buy th,
+.buy td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.buy th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.buy tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.buy tbody tr:hover {
+  background-color: #ebebeb;
+}
+
+.buy td {
   display: table-cell;
   vertical-align: middle;
+}
+
+.buy td {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.buy-item-quantity {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+}
+
+.buy-item-quantity label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.buy-item-quantity select,
+.buy-item-quantity input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.buy-item-quantity input[type="number"]::placeholder{
+  font-weight: bold;
+}
+.buy-item-quantity button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buy-item-quantity button:hover {
+  background-color: #45a049;
+}
+
+
+
+/*cart.html*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-shadow: #86989B;
+
+}
+
+.cart {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  width: 100%; /* Subtracting the margin from both sides */
+  max-width: 400px;
+  margin: 20px;
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+
+.cart h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart th, .cart td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart th {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}
+
+.cart tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.cart tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+.cart td:last-child, .cart td:nth-last-child(2) {
+  font-weight: bold;
+}
+
+.cart td[colspan="3"] {
+  text-align: right;
 }
 

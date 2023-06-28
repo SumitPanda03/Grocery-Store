@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block buy %}
+
+
+    <div class="Buy">
+    
+            <h2 id="items">BUY MENU</h2>
+            <div class="item-list">
+    <!--            <a type="button" href={{url_for('catalogue')}}>Items</a>-->
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in outlet %}
+                        <tr><td>{{item._id}}</td><td>{{item.name}}</td><td>{{item.price}}</td></tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    <div class = "buy-item-quantity">
+        <form action="{{url_for('buy')}}" role="form" method="post">
+            <label for="choose-item">Choose Item to Buy</label>
+            <select name="choose-item" id="item">
+                <option value="" selected disabled>Select an item</option>
+                {% for item in outlet %}
+                <option value={{item.name}} name="choose-item">{{item.name}}</option>
+                {% endfor %}
+            </select>
+            <label for="choose-quantity">Enter Quantity to Buy</label>
+            <input type="number" name="choose-quantity" placeholder="Select quantity of item">
+            <button type="submit" id="sbt-btn">BUY</button>
+        </form>
+    </div>
+
+
+{% endblock %}

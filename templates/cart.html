@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MY-STORE!</title>
+    <title>BILL</title>
     <link rel="stylesheet" href="static/style.css">
+
 </head>
 <body>
-
-
     <nav class="nav-section">
         <table>
             <thead>
@@ -30,37 +29,28 @@
         </table>
     </nav>
 
-    <div class="image-color">
-        <div class="logo">
-            <img src="/static/SiteLogo.png" alt="Site Logo">
+    <div class="cart-container">
+        <div class="cart">
+            <h2>MY CART</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
+                            <th>QUANTITY</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in bought_items %}
+                            <tr><td>{{item._id}}</td><td>{{item.NAME}}</td><td>{{item.PRICE}}</td><td>{{item.QUANTITY}}</td></tr>
+                        {% endfor %}
+                        <tr><td></td><td></td><td>Total Price:{{net_price}}</td><td>Total Quantity:{{net_quantity}}</td></tr>
+<!--                        <tr><td colspan="2">Total Quantity:{{net_quantity}}</td><td colspan="2">{{net_quantity}}</td></tr>-->
+                    </tbody>
+                </table>
         </div>
-        <hr>
     </div>
-
-<section class="other-html">
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-
-    <div class="catalogue">
-        {% block catalogue %}{% endblock %}
-    </div>
-
-    <div class="update">
-        {% block update %}{% endblock %}
-    </div>
-
-    <div class="buy">
-        {% block buy %}{% endblock %}
-    </div>
-    <div class="add">
-        {% block add %}{% endblock %}
-    </div>
-
-    <div class="delete">
-        {% block delete %}{% endblock %}
-    </div>
-</section>
-
 </body>
 </html>

@@ -1,17 +1,12 @@
-from flask import Flask, request, jsonify, json, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect
 from pymongo import MongoClient
-from flask_pymongo import PyMongo
-from bson.json_util import dumps
-from bson.objectid import ObjectId
+
 
 app = Flask(__name__, template_folder='templates')
-# app.config['MONGO_URI'] = 'mongodb://localhost:27017/Store'
-# mongo = PyMongo(app)
-# items = mongo.db.items
-# user = mongo.db.user
 client = MongoClient('mongodb://localhost:27017')
 db = client['Store']
-collection = db['items']
+items_db= db['items']
+customers_db = db['customers']
 
 
 @app.route('/')
@@ -21,22 +16,12 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template(('about.html'))
-
-
-'''
-@app.route('/all_items', methods=["GET"])
-def all_items():
-    outlet = list(collection.find())
-    # return dumps(outlet)
-    return render_template('layout.html', outlet=outlet)
-'''
+    return render_template('about.html')
 
 
 @app.route('/catalogue')
 def catalogue():
-    outlet = list(collection.find())
-    # return dumps(outlet)
+    outlet = list(items_db.find())
     return render_template('catalogue.html', outlet=outlet)
 
 
@@ -47,7 +32,7 @@ def update_item():
         name = request.form.get('name')
         price = request.form.get('price')
 
-        collection.update_one({'_id': item_id}, {'$set': {'name': name, 'price': price}})
+        items_db.update_one({'_id': item_id}, {'$set': {'name': name, 'price': price}})
 
     return render_template('update.html')
 
@@ -58,15 +43,41 @@ def add():
         new_id = request.form.get('new-item-id')
         new_name = request.form.get('new-item-name')
         new_price = request.form.get('new-item-price')
-        collection.insert_one({'_id': new_id, 'name': new_name, 'price': new_price})
+        items_db.insert_one({'_id': new_id, 'name': new_name, 'price': new_price})
 
     return render_template('add.html')
-    # return redirect((url_for('catalogue')))
+
+
+@app.route('/buy', methods=["GET", "POST"])
+def buy():
+    outlet = list(items_db.find())
+    if request.method == "POST":
+        item_name = request.form.get('choose-item')
+        item_quantity = request.form.get('choose-quantity')
+        item = items_db.find_one({'name': item_name})
+        item_id = item['_id']
+        item_price = item['price']
+        customers_db.insert_one({'_id': item_id, 'NAME': item_name, 'PRICE': item_price, 'QUANTITY': item_quantity})
+    return render_template('buy.html', outlet=outlet)
+
+
+@app.route('/cart')
+def cart():
+    bought_items = customers_db.find({})
+    item_billing = customers_db.find({})
+
+    net_price = 0
+    net_quantity = 0
+    for i in item_billing:
+        net_quantity = net_quantity + int(i['QUANTITY'])
+        net_price = net_price + (int(i['PRICE']) * int(i['QUANTITY']))
+
+    return render_template('cart.html', bought_items=bought_items, net_price=net_price, net_quantity=net_quantity)
 
 
 @app.route('/reset')
 def reset():
-    collection.delete_many({})
+    customers_db.delete_many({})
     return redirect(url_for('index'))
 
 
@@ -74,9 +85,8 @@ def reset():
 def delete_itemid():
     if request.method == "POST":
         to_delete_itemid = request.form.get('delete-item-id')
-        collection.delete_one({'_id': to_delete_itemid})
+        items_db.delete_one({'_id': to_delete_itemid})
 
-    # return redirect(url_for('all_items'))
     return render_template('delete.html')
 
 
