@@ -7,6 +7,17 @@
 </head>
 <body>
 
+    <div class="auth">
+        <table>
+            <thead>
+                    <tr>
+                        <th><u><a href="{{url_for('signup')}}"> SIGNUP</a> </u></th>
+                        <th><u><a href="{{url_for('login')}}"> LOGIN</a> </u></th>
+                    </tr>
+            </thead>
+        </table>
+    </div>
+
 
     <nav class="nav-section">
         <table>
@@ -20,15 +31,13 @@
                     <th><u><a href="{{url_for('delete_itemid')}}"> DELETE</a> </u></th>
                     <th><u><a href="{{url_for('buy')}}"> BUY</a> </u></th>
                     <th><u><a href="{{url_for('cart')}}"> CART</a> </u></th>
-                    <th><u><a href="{{url_for('reset')}}"> RESET</a> </u></th>
-
-<!--                    <th><u><a href="#cart"> CART</a> </u></th>-->
-<!--                    <th><u><a href="#checkout"> CHECKOUT</a> </u></th>-->
-
+                    <th><u><a href="{{url_for('logout')}}"> LOGOUT</a> </u></th>
                 </tr>
             </thead>
         </table>
     </nav>
+
+
 
     <div class="image-color">
         <div class="logo">
@@ -38,9 +47,11 @@
     </div>
 
 <section class="other-html">
+
     <div class="content">
         {% block content %}{% endblock %}
     </div>
+
 
     <div class="catalogue">
         {% block catalogue %}{% endblock %}

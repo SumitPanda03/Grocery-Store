@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/style.css">
+
+</head>
+<body>
+
+    <div class="auth">
+        <table>
+            <thead>
+                    <tr>
+                        <th><u><a href="{{url_for('signup')}}"> SIGNUP</a> </u></th>
+                        <th><u><a href="{{url_for('login')}}"> LOGIN</a> </u></th>
+                    </tr>
+            </thead>
+        </table>
+    </div>
+
+    <nav class="nav-section">
+        <table>
+            <thead>
+                <tr>
+                    <th><u><a href="{{url_for('index')}}"> HOME</a> </u></th>
+                    <th><u><a href="{{url_for('about')}}">ABOUT</a></u></th>
+                    <th><u><a href="{{url_for('catalogue')}}">CATALOGUE</a></u></th>
+                    <th><u><a href="{{url_for('add')}}"> ADD</a> </u></th>
+                    <th><u><a href="{{url_for('update_item')}}"> UPDATE</a></u></th>
+                    <th><u><a href="{{url_for('delete_itemid')}}"> DELETE</a> </u></th>
+                    <th><u><a href="{{url_for('buy')}}"> BUY</a> </u></th>
+                    <th><u><a href="{{url_for('cart')}}"> CART</a> </u></th>
+                    <th><u><a href="{{url_for('logout')}}"> LOGOUT</a> </u></th>
+
+                </tr>
+            </thead>
+        </table>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category,message in messages %}
+            {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% else %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="{{url_for('login_post')}}", method="post", role="form">
+
+          <div class="username">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required >
+          </div>
+          <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+          </div>
+          <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>

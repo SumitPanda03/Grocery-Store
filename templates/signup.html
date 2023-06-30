@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BILL</title>
+    <title>Sign-up</title>
     <link rel="stylesheet" href="static/style.css">
-
 </head>
 <body>
 
- <div class="auth">
+    <div class="auth">
         <table>
             <thead>
                     <tr>
@@ -32,32 +31,33 @@
                     <th><u><a href="{{url_for('buy')}}"> BUY</a> </u></th>
                     <th><u><a href="{{url_for('cart')}}"> CART</a> </u></th>
                     <th><u><a href="{{url_for('logout')}}"> LOGOUT</a> </u></th>
+
                 </tr>
             </thead>
         </table>
     </nav>
 
-    <div class="cart-container">
-        <div class="cart">
-            <h2> CART</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>NAME</th>
-                            <th>PRICE</th>
-                            <th>QUANTITY</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        {% for item in bought_items %}
-                            <tr><td>{{item._id}}</td><td>{{item.NAME}}</td><td>{{item.PRICE}}</td><td>{{item.QUANTITY}}</td></tr>
-                        {% endfor %}
-                        <tr><td></td><td></td><td>Total Price:{{net_price}}</td><td>Total Quantity:{{net_quantity}}</td></tr>
-                    </tbody>
-                </table>
-        </div>
-    </div>
+    <form action="{{url_for('signup_post')}}" method="post" role="form">
+
+          <div class="name">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+          </div>
+          <div class="email">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+          </div>
+          <div class="username">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required >
+          </div>
+          <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+          </div>
+          <button type="submit" id="signup-btn">Submit</button>
+
+    </form>
 </body>
 </html>

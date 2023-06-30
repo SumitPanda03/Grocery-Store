@@ -1,27 +1,20 @@
-from flask import Flask, request, render_template, url_for, redirect, session
+from flask import Flask, request, render_template, url_for, redirect, session, flash, make_response, jsonify, g
 from pymongo import MongoClient
-from flask_login import login_manager, UserMixin, login_user, logout_user, login_required, LoginManager
-from werkzeug.security import generate_password_hash,check_password_hash
-import os
-
+from werkzeug.security import generate_password_hash, check_password_hash
+import jwt
+import datetime
+from functools import wraps
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = 'ad15a082fe69aad481086b06c43001e4a347e35a28d17e3f9f0b2c35e3fafe07'
-mongo_uri = os.environ.get('MONGO_URI')
+secret_key = "thisissecretkey"
+app.config['SECRET_KEY'] = "123456789"
 client = MongoClient('mongodb://localhost:27017')
 db = client['Store']
 items_db = db['items']
 customers_db = db['customers']
-auth_db = db['auth']
+auth_db = db['credentials']
+blacklisted_tokens = set()
 
-# login_manager = LoginManager()
-# # login_manager.login_view = 'login'
-# login_manager.init_app(app)
-
-
-@login_manager.user_loader
-def load_user():
-    return auth_db.get(auth_db['_id'])
 
 @app.route('/signup')
 def signup():
@@ -31,11 +24,17 @@ def signup():
 @app.route('/signup', methods=["POST"])
 def signup_post():
     name = request.form.get('name')
+    username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
-    auth_db.insert_one({'name': name, 'email': email, 'password': generate_password_hash(password,method='sha256')})
-
-    return redirect(url_for('login'))
+    check_username_exists = auth_db.find_one({'username': username})
+    if check_username_exists:
+        return "User already exists , Please Login"
+    else:
+        auth_db.insert_one({'name': name, 'username': username, 'email': email,
+                            'password': generate_password_hash(password, method='sha256')})
+        flash('You are now signed-up and can log-in', 'success')
+        return redirect(url_for('login'))
 
 
 @app.route('/login')
@@ -45,13 +44,51 @@ def login():
 
 @app.route('/login', methods=["POST"])
 def login_post():
-    email = request.form.get('email')
+    username = request.form.get('username')
     password = request.form.get('password')
-    user_details = auth_db.find_one({'email': email})
-    if check_password_hash(user_details['password'], password):
-        return redirect(url_for('index'))
+    user_details = auth_db.find_one({'username': username})
+    if user_details:
+        if check_password_hash(user_details['password'], password):
+            # time = datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+            # token = jwt.encode(
+            #     {'username': user_details['username'], 'email': user_details['email'], 'name': user_details['name'],
+            #      'password': user_details['password'], 'exp': time}, app.config['SECRET_KEY'])
+            token_expiry = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+            token = jwt.encode({'user_id': str(user_details['_id']), 'exp': str(token_expiry)},
+                               app.config['SECRET_KEY'], algorithm='HS256')
+            app.logger.info(token)
+            app.logger.info('PASSWORD MATCHED')
+            # return token
+            # return jsonify({'token': token.decode('utf-8')})
+            return redirect(url_for('index'))
+        else:
+            app.logger.info('WRONG PASSWORD,LOGIN FAILED, TRY AGAIN')
+            flash("Wrong Password, Try Again", 'error')
+            return redirect(url_for('login'))
     else:
+        app.logger.info("NO USER")
+        flash("No User Exists, Try Again", 'error')
         return redirect(url_for('login'))
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = request.headers.get('Authorization')
+        if not token or not token.startswith('Bearer '):
+            return jsonify({'message': 'Missing or invalid token'}), 401
+        token = token.split(' ')[1]
+        try:
+            decoded_token = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            g.user_id = decoded_token['user_id']
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token expired'}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token'}), 401
+
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 
 @app.route('/')
@@ -76,7 +113,6 @@ def update_item():
         item_id = request.form.get('item_id')
         name = request.form.get('name')
         price = request.form.get('price')
-
         items_db.update_one({'_id': item_id}, {'$set': {'name': name, 'price': price}})
 
     return render_template('update.html')
@@ -110,18 +146,17 @@ def buy():
 def cart():
     bought_items = customers_db.find({})
     item_billing = customers_db.find({})
-    user_details = auth_db.find({})
     net_price = 0
     net_quantity = 0
     for i in item_billing:
         net_quantity = net_quantity + int(i['QUANTITY'])
         net_price = net_price + (int(i['PRICE']) * int(i['QUANTITY']))
 
-    return render_template('cart.html', bought_items=bought_items, net_price=net_price, net_quantity=net_quantity,user_details=user_details)
+    return render_template('cart.html', bought_items=bought_items, net_price=net_price, net_quantity=net_quantity)
 
 
-@app.route('/reset')
-def reset():
+@app.route('/logout')
+def logout():
     customers_db.delete_many({})
     return redirect(url_for('index'))
 
