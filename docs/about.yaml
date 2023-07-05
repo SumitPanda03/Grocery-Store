@@ -1,0 +1,13 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: About API
+tags:
+  - Store
+paths:
+  /about:
+    get:
+      summary: Get information about the Store
+responses:
+  200:
+    description: Successful response

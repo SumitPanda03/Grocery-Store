@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Logout API
+tags:
+  - Authentication
+paths:
+  /logout:
+    get:
+      summary: Logout user
+      description: Logout the currently logged-in user
+responses:
+  302:
+    description: Redirect to the home page

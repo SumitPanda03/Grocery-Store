@@ -1,0 +1,35 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Buy Item API
+tags:
+  - Store
+paths:
+  /buy:
+    get:
+      summary: Render the buy form
+      description: Render the form to buy items
+      responses:
+        200:
+          description: Successful response
+    post:
+      summary: Buy an item
+      description: Buy an item from the available items
+      consumes:
+        - application/x-www-form-urlencoded
+parameters:
+  - name: choose-item
+    in: formData
+    type: string
+    required: true
+    description: Item name
+  - name: choose-quantity
+    in: formData
+    type: integer
+    required: true
+    description: Item quantity
+responses:
+  200:
+    description: Item purchased successfully
+  400:
+    description: Invalid request or missing required parameters

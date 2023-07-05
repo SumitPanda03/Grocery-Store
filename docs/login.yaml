@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Login API
+tags:
+  - Authentication
+paths:
+  /login:
+    get:
+      summary: Render login form
+      description: Render the form for user login
+      responses:
+        200:
+          description: Successful response
+    post:
+      summary: User login
+      description: Authenticate user with provided username and password
+      consumes:
+        - application/x-www-form-urlencoded
+parameters:
+  - name: username
+    in: formData
+    type: string
+    required: true
+    description: User's username
+  - name: password
+    in: formData
+    type: string
+    format: password
+    required: true
+    description: User's password
+responses:
+  302:
+    description: Redirect to home page after successful login
+  400:
+    description: Invalid request or missing required parameters
+  401:
+    description: Wrong password, login failed
+  404:
+    description: User does not exist, login failed

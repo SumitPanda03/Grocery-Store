@@ -1,0 +1,64 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Update Item API
+tags:
+  - Store
+paths:
+  /update_item:
+    get:
+      summary: Render the update form
+      description: Render the form to update an item
+responses:
+  200:
+    description: Successful response
+    post:
+      summary: Update item details
+      description: Update the details of an item
+      consumes:
+        - application/x-www-form-urlencoded
+parameters:
+  - name: item_id
+    in: formData
+    type: string
+    required: true
+    description: Item ID
+  - name: name
+    in: formData
+    type: string
+    required: true
+    description: Item name
+  - name: price
+    in: formData
+    type: number
+    required: true
+    description: Item price
+responses:
+  200:
+    description: Item details updated successfully
+  400:
+    description: Invalid request or missing required parameters
+  404:
+    description: Item not found
+    put:
+      summary: Update Item (PUT)
+      description: Update an item in the database using a PUT request
+      parameters:
+        - name: item_id
+          in: formData
+          description: ID of the item to update
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: New name for the item
+          required: true
+          type: string
+        - name: price
+          in: formData
+          description: New price for the item
+          required: true
+          type: number
+responses:
+  200:
+    description: Successful response

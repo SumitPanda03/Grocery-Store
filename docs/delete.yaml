@@ -1,0 +1,44 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Delete Item by ID API
+tags:
+  - Store
+paths:
+  /delete_itemid:
+    get:
+      summary: Render the delete form
+      description: Render the form to delete an item by ID
+responses:
+  200:
+    description: Successful response
+    post:
+      summary: Delete item by ID
+      description: Delete an item from the database by its ID
+      consumes:
+        - application/x-www-form-urlencoded
+parameters:
+  - name: delete-item-id
+    in: formData
+    type: string
+    required: true
+    description: Item ID to delete
+responses:
+  200:
+    description: Item deleted successfully
+  400:
+    description: Invalid request or missing required parameters
+  404:
+    description: Item not found
+    delete:
+      summary: Delete Item (DELETE)
+      description: Delete an item from the database using a DELETE request
+parameters:
+- name: delete-item-id
+  in: formData
+  description: ID of the item to delete
+  required: true
+  type: string
+responses:
+  200:
+    description: Successful response

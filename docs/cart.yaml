@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Cart API
+tags:
+  - Store
+paths:
+  /cart:
+    get:
+      summary: Get cart details
+      description: Get the details of items in the cart
+responses:
+  200:
+    description: Successful response

@@ -1,0 +1,16 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Verify User API
+tags:
+  - Store
+paths:
+  /verify:
+    get:
+      summary: Verify User
+      description: Verify user login using JWT access token
+      security:
+        - Bearer: []
+responses:
+  200:
+    

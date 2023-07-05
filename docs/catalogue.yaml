@@ -1,0 +1,25 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Catalogue API
+tags:
+  - Store
+paths:
+  /catalogue:
+    get:
+      summary: Get catalogue items
+      description: Retrieve a list of items in the catalogue
+      tags:
+        - Catalogue
+      security:
+        - BearerAuth: []
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: array
+      items:
+        $ref: "#/definitions/Item"
+  401:
+    description: Unauthorized
+x-swagger-router-controller: catalogueController

@@ -1,0 +1,15 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: OPTIONS Request API
+tags:
+  - Store
+paths:
+  /options_req:
+    options:
+      summary: Handle OPTIONS request
+      description: Handle the OPTIONS request to allow CORS (Cross-Origin Resource Sharing)
+responses:
+  200:
+    description: Successful response with CORS headers
+x-swagger-router-controller: options_req

@@ -4,8 +4,8 @@
 
     <div class="updating-item">
         <h1>Update Item</h1>
-        <form action="{{ url_for('update_item') }}" method="POST" role="form">
-<!--            <input type="hidden" name="_method" value="PUT">-->
+        <form action="{{ url_for('update_item') }}" method="post" role="form">
+            <input type="hidden" name="_method" value="PUT">
             <label for="item_id">Item ID:</label>
             <input type="text" name="item_id" id="item_id" placeholder="Enter ID of new item" aria-label="Store" aria-describedby="update-btn" required pattern="[A-Za-z0-9]+}">
             <br><br>

@@ -6,8 +6,9 @@
     <div class="delete-item-id">
         <h2>Delete an Item</h2>
         <form action="{{url_for('delete_itemid')}}" method="post" role="form">
+            <input type="hidden" name="_method" value="DELETE">
             <label for="delete-item-id">Item ID:</label>
-            <input name="delete-item-id" id="delete-item-id" type="text" placeholder="Enter ID of item to delete" aria-label="Store" aria-describedby="dlt-btn"  pattern="[A-Za-z0-9]+" ><br>
+            <input name="delete-item-id" id="delete-item-id" type="text" placeholder="Enter ID of item to delete" aria-label="Store" aria-describedby="dlt-btn" required  pattern="[A-Za-z0-9]+" ><br>
             <input type="submit" value="Delete">
         </form>
     </div>

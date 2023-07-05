@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Add Item API
+tags:
+  - Store
+paths:
+  /add:
+    get:
+      summary: Render the add form
+      description: Render the form to add a new item
+responses:
+  200:
+    description: Successful response
+    post:
+      summary: Add a new item
+      description: Add a new item to the database
+      consumes:
+        - application/x-www-form-urlencoded
+parameters:
+  - name: new-item-id
+    in: formData
+    type: string
+    required: true
+    description: New item ID
+  - name: new-item-name
+    in: formData
+    type: string
+    required: true
+    description: New item name
+  - name: new-item-price
+    in: formData
+    type: number
+    required: true
+    description: New item price
+responses:
+  200:
+    description: Item added successfully
+  400:
+    description: Invalid request or missing required parameters
