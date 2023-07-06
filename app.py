@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, url_for, redirect, session, flash, jsonify, g
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
-import jwt
+from jwt import jwt
 from flask_cors import CORS
 from flasgger import Swagger, swag_from
 from config.swagger import template, swagger_config

@@ -1,8 +1,10 @@
 Flask
 pymongo
-jwt
 datetime
 # functools
 gunicorn
 flasgger
-CORS
+flask_cors
+flasgger
+flask_jwt_extended
+PyJWT
