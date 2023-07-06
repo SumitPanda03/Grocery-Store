@@ -32,20 +32,19 @@ The user can also see the cart after buying things
 ## INSTALLATION
 There is a **requirements.txt** file that specifices all the libraries to be imported to run this file.
 User can run the file using the following command : 
+In **CLI**
 <pre>
-'''bash
 pip install -r requirements.txt
-''' 
 </pre>
   
 There is also Docker files included which will create an image and a container in your local machine to run the application directly. You must have docker engine installed in your system from the official website - [Docker Download](https://www.docker.com/products/docker-desktop/)
 To use this run the following commands in the command line interface(CLI) at the project directory:
-
-'''bash
+In **CLI**
+<pre>
 docker ps 
 docker build -t <your tag for the docker image>
 docker-compose up
-'''
+</pre>
 
 It should be running on the default port of your machine (mostly 5000)
 
