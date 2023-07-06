@@ -20,23 +20,24 @@ The user can also see the cart after buying things
 * DOCKER
 
 ## FEATURES
-* Signup
-*  Login
-* JWT Authentication
-* ADD , CREATE, DELETE, UPDATE IN DATABASE FROM FRONTEND
+* SIGNUP
+* LOGIN
+* JWT AUTHENTICATION
+* ADD, CREATE, DELETE, UPDATE IN DATABASE FROM FRONTEND
 * JINJA TEMPLATING FOR DYNAMIC DATA ON FRONTEND
 * MONGODB CONNECTIVITY
-* RESTAPIs : GET, PUT, PATCH, DELETE, POST, OPTIONS
+* RESTAPIs: GET, PUT, PATCH, DELETE, POST, OPTIONS
 * SWAGGER OPENAPI DOCUMENTATION
 
 ## INSTALLATION
 There is a **requirements.txt** file that specifices all the libraries to be imported to run this file.
 User can run the file using the following command : 
-
+<pre>
 '''bash
 pip install -r requirements.txt
-'''
-
+''' 
+</pre>
+  
 There is also Docker files included which will create an image and a container in your local machine to run the application directly. You must have docker engine installed in your system from the official website - [Docker Download](https://www.docker.com/products/docker-desktop/)
 To use this run the following commands in the command line interface(CLI) at the project directory:
 
